@@ -23,7 +23,7 @@ type Props = {
 export const PostDetails: React.FC<Props> = ({ post }) => {
   const dispatch = useAppDispatch();
 
-  const { comments, loaded, hasError } = useAppSelector(state => state.comments);
+  const { items, loaded, hasError } = useAppSelector(state => state.comments);
 
   const [visible, setVisible] = useState(false);
 
@@ -113,17 +113,17 @@ export const PostDetails: React.FC<Props> = ({ post }) => {
           </div>
         )}
 
-        {loaded && !hasError && comments.length === 0 && (
+        {loaded && !hasError && items.length === 0 && (
           <p className="title is-4" data-cy="NoCommentsMessage">
             No comments yet
           </p>
         )}
 
-        {loaded && !hasError && comments.length > 0 && (
+        {loaded && !hasError && items.length > 0 && (
           <>
             <p className="title is-4">Comments:</p>
 
-            {comments.map(comment => (
+            {items.map(comment => (
               <article className="message is-small" key={comment.id} data-cy="Comment">
                 <div className="message-header">
                   <a href={`mailto:${comment.email}`} data-cy="CommentAuthor">
